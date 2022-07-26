@@ -1,21 +1,20 @@
 import "./App.css";
+import NavBar from "./components/NavBar";
 
 function App() {
+  let userColor = "green";
+  const styles = { marginTop: "200px", color: userColor };
+  let usuario = "Santiago";
+
   return (
-    <div className="App">
-      <header className="App-header">
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Aprendamos React con CoderHouse
-        </a>
-      </header>
+    <div>
+        <NavBar/>
+        <h1 className="title">Coderhouse React 34710 ⚛</h1>
+        <br/>
+        <p style={styles}>{usuario}</p>
+        <img width="200" src="/images/logos_coderhouse.png" alt="Coderhouse" />
+        <br/>
+        <button onClick={ ()=> alert("Click event callback") }>Click me</button>
     </div>
   );
 }
