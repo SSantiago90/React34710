@@ -1,6 +1,7 @@
 import "./App.css";
 import NavBar from "./components/NavBar";
 import Card from "./components/Card/Card";
+import CardWithObject from "./components/Card/CardWithObject";
 import Button from "./components/Button/Button";
 import ButtonChildren from "./components/Button/ButtonChildren";
 
@@ -42,14 +43,17 @@ function App() {
       <Button text="Click me" />
 
       <ButtonChildren type="alert">Click me with Childrens</ButtonChildren>
-      {/* <Card data={dataProducts[0]} />
-      <Card data={dataProducts[1]} /> */}
-      <Card
-        name="Televisor HD"
-        price={2090}
-        imgurl="https://picsum.photos/280/260"
-        description="Lorem Ipsum"
-      />
+
+      <div className="main">
+        <CardWithObject data={dataProducts[0]} />
+        <CardWithObject data={dataProducts[1]} />
+        <Card
+          name="Televisor HD"
+          price={2090}
+          imgurl="https://picsum.photos/280/260"
+          description="Lorem Ipsum"
+        />
+      </div>
     </div>
   );
 }
