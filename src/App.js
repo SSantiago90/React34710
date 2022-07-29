@@ -4,6 +4,7 @@ import Card from "./components/Card/Card";
 import CardWithObject from "./components/Card/CardWithObject";
 import Button from "./components/Button/Button";
 import ButtonChildren from "./components/Button/ButtonChildren";
+import ItemCount from "./components/ItemCount";
 
 function App() {
   let userColor = "green";
@@ -54,6 +55,10 @@ function App() {
           description="Lorem Ipsum"
         />
       </div>
+
+      <ItemCount initial={1} stock={10} />
+      <ItemCount initial={5} stock={20} />
+      <ItemCount initial={10} stock={30} />
     </div>
   );
 }
