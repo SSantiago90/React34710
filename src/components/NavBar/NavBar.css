@@ -1,0 +1,10 @@
+.nav-menu{
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+  width: 100%;
+  margin: 0;
+  height: 70px;
+  background-color: rgb(222, 232, 81);
+  top: 0;
+}

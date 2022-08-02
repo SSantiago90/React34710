@@ -22,17 +22,6 @@
   margin: 0 auto;
 }
 
-.nav-menu{
-  display: flex;
-  justify-content: space-around;
-  align-items: center;
-  width: 100%;
-  margin: 0;
-  height: 70px;
-  background-color: rgb(222, 232, 81);
-  top: 0;
-}
-
 @media (prefers-reduced-motion: no-preference) {
   .App-logo {
     animation: App-logo-spin infinite 20s linear;
