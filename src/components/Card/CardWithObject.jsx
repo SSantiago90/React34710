@@ -13,7 +13,7 @@ function Card(props) {
         <h2>{props.data.name}</h2>
         <p>{props.data.description}</p>
         <h3>$ {props.data.price}</h3>
-        <Button text="Ver más"/>        
+        <Button text="Ver más" />
       </div>
     </div>
   );

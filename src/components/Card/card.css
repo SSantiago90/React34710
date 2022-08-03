@@ -1,7 +1,12 @@
 .card-img{
+  width: 280px;
+  height: 260px;
+  object-fit: cover;
+}
+.card-img img{
   width: 100%;
   height: 100%;
-  object-fit: cover;
+  object-fit: contain;
 }
 .card{
   margin: 10px 15px;
