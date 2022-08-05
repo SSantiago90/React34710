@@ -35,7 +35,7 @@ function Ejemplos() {
   ];
 
   return (
-    <div className="App">
+    <>
       <div className="header-banner">
         <img
           className="header-img"
@@ -51,13 +51,12 @@ function Ejemplos() {
 
       <ButtonChildren type="alert">Click me with Childrens</ButtonChildren>
 
-      <div className="main">
-        {/* 
+      {/*  <div className="main">
         <CardWithObject data={dataProducts[0]} />
         <CardWithObject data={dataProducts[1]} />
-        <CardWithObject data={dataProducts[2]} /> */}
-      </div>
-    </div>
+        <CardWithObject data={dataProducts[2]} />
+      </div> */}
+    </>
   );
 }
 

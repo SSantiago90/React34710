@@ -1,7 +1,7 @@
 import Button from "../Button/Button";
 import "./card.css";
 
-function Card({ title, price, img, category}) {
+function Card({ title, price, img, category }) {
   return (
     <div className="card">
       <div className="card-img">
