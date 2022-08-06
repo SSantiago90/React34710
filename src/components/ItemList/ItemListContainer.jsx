@@ -24,7 +24,7 @@ const ItemListContainer = () => {
   //console.log(products);
 
   return (
-    <div className="container main mx-auto mt-5">
+    <div className="container mx-auto mt-5">
       {/* El mapa debería realizarse en el componente <ItemList>, al que le pasamos el estado "products" mediante props */}
       {products.map((item) => {
         return (

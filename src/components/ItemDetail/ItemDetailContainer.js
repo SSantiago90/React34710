@@ -1,20 +1,24 @@
 import React, { useEffect } from "react";
-import data from "../../data/data";
-/* Crear una promesa que RESUELVA un producto del array de datos */
+import dataJSON from "../../data/data";
+import Card from "../Card/CardWithObject";
 
-function traerProducto() {
-  return new Promise( 
-    (resolve, reject) =>  {
-      /* Promesa que luego de 1 segundo (setTimeout) devuelve (resolve) un item del listado (es decir de nuestro array "data") */
-    }    
-  )  
-}
-
-function ItemDetailContainer() {
+function ItemDetailContainer({ itemid }) {
   /* Crear un estado para guardar un objeto/item/producto */
   /* Crear un EFFECTO para cargar en el montaje  */
+
+  function traerProducto() {
+    return new Promise((resolve, reject) => {
+      let itemEncontrado = dataJSON.find((element) => itemid === element.id);
+      itemEncontrado
+        ? resolve(itemEncontrado)
+        : reject(new Error("Error en el find"));
+    });
+  }
+
   useEffect(() => {
-    traerProducto(); /* .then() -> setState */
+    traerProducto()
+      .then((respuesta) => console.log(respuesta))
+      .catch((error) => alert(error));
   }, []);
 
   return (
