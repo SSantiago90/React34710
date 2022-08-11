@@ -1,31 +1,40 @@
-import React, { useEffect } from "react";
+import React, { useEffect, useState } from "react";
 import dataJSON from "../../data/data";
 import Card from "../Card/CardWithObject";
+import { useParams } from "react-router-dom";
 
 function ItemDetailContainer({ itemid }) {
-  /* Crear un estado para guardar un objeto/item/producto */
-  /* Crear un EFFECTO para cargar en el montaje  */
+  const [item, setItem] = useState({});
+
+  const idURL = useParams().id;
 
   function traerProducto() {
     return new Promise((resolve, reject) => {
-      let itemEncontrado = dataJSON.find((element) => itemid === element.id);
-      itemEncontrado
-        ? resolve(itemEncontrado)
-        : reject(new Error("Error en el find"));
+      let itemRequested = dataJSON.find((elemento) => elemento.id == idURL);
+
+      if (itemRequested === undefined) reject("No encontramos el item");
+      else resolve(itemRequested);
     });
   }
 
   useEffect(() => {
     traerProducto()
-      .then((respuesta) => console.log(respuesta))
+      .then((respuesta) => setItem(respuesta))
       .catch((error) => alert(error));
   }, []);
 
   return (
     <div className="main">
-      {/* Crear componente ItemDetail y enviarle por props los datos del producto
-       que guardamos en el estado (nombre, precio, imagen, etc.)          
-      */}
+      <div className="card">
+        <div className="card-img">
+          <img src={item.img} alt="imagen" />
+        </div>
+        <div className="card-detail">
+          <h2>{item.title}</h2>
+          <p>{item.category}</p>
+          <h3>$ {item.price}</h3>
+        </div>
+      </div>
     </div>
   );
 }

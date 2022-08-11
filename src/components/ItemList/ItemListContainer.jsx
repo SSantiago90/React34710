@@ -24,11 +24,12 @@ const ItemListContainer = () => {
   //console.log(products);
 
   return (
-    <div className="container mx-auto mt-5">
+    <div className="main container mx-auto mt-5">
       {/* El mapa debería realizarse en el componente <ItemList>, al que le pasamos el estado "products" mediante props */}
       {products.map((item) => {
         return (
           <Card
+            id={item.id}
             title={item.title}
             price={item.price}
             category={item.category}

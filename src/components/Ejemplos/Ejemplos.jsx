@@ -51,11 +51,11 @@ function Ejemplos() {
 
       <ButtonChildren type="alert">Click me with Childrens</ButtonChildren>
 
-      {/*  <div className="main">
+      <div className="main">
         <CardWithObject data={dataProducts[0]} />
         <CardWithObject data={dataProducts[1]} />
         <CardWithObject data={dataProducts[2]} />
-      </div> */}
+      </div>
     </>
   );
 }
