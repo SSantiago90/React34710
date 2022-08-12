@@ -1,12 +1,13 @@
 import "./button.css";
 
-function Button({ text, type }) {
+function Button({ text, type, onTouch }) {
+
   const btnstyle = {
     backgroundColor: type === "alert" ? "red" : "green",
   };
 
   return (
-    <button style={btnstyle} className="btn">
+    <button onClick={onTouch} style={btnstyle} className="btn">
       {text}
     </button>
   );

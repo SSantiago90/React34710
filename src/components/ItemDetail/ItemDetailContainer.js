@@ -1,19 +1,23 @@
 import React, { useEffect, useState } from "react";
 import dataJSON from "../../data/data";
-import Card from "../Card/CardWithObject";
+import CardDetail from "../Card/CardDetail";
 import { useParams } from "react-router-dom";
 
 function ItemDetailContainer({ itemid }) {
   const [item, setItem] = useState({});
 
-  const idURL = useParams().id;
+  const { id } = useParams();
 
   function traerProducto() {
     return new Promise((resolve, reject) => {
-      let itemRequested = dataJSON.find((elemento) => elemento.id == idURL);
+      setTimeout(() => {
+        let itemRequested = dataJSON.find(
+          (elemento) => elemento.id === Number(id)
+        );
 
-      if (itemRequested === undefined) reject("No encontramos el item");
-      else resolve(itemRequested);
+        if (itemRequested === undefined) reject("No encontramos el item");
+        else resolve(itemRequested);
+      }, 1000);
     });
   }
 
@@ -25,16 +29,14 @@ function ItemDetailContainer({ itemid }) {
 
   return (
     <div className="main">
-      <div className="card">
-        <div className="card-img">
-          <img src={item.img} alt="imagen" />
-        </div>
-        <div className="card-detail">
-          <h2>{item.title}</h2>
-          <p>{item.category}</p>
-          <h3>$ {item.price}</h3>
-        </div>
-      </div>
+      <CardDetail
+        id={item.id}
+        title={item.title}
+        price={item.price}
+        img={item.img}
+        category={item.category}
+        stock={item.stock}
+      />
     </div>
   );
 }

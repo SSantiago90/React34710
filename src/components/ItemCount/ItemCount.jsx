@@ -1,28 +1,23 @@
-import React from "react";
+import React, { useState } from "react";
 
 function ItemCount(props) {
-  console.log(props.stock, props.initial); /* Valor máximo del contador */
-
-  const [clicks, setClicks] = ""; /* hook de estado */
+  const [count, setCount] = useState(props.initial);
 
   const handleIncrement = () => {
-    /* Sumamos */
+    setCount(count + 1);
   };
 
   const handleDecrement = () => {
-    /* Restamos */
-  };
-
-  const onAdd = () => {
-    /*  */
+    setCount(count - 1);
   };
 
   return (
     <>
       <h3>Item Counter</h3>
       <button onClick={handleDecrement}>restar</button>
+      <span>{count}</span>
       <button onClick={handleIncrement}>sumar</button>
-      <button onClick={onAdd}>Finalizar Compra</button>
+      <button onClick={() => props.onAdd(count)}>{props.text}</button>
     </>
   );
 }
