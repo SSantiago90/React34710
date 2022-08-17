@@ -9,7 +9,7 @@ function NavBar() {
         <Link to="/">
           <li>Inicio</li>
         </Link>
-        <li>Categoría B</li>
+        <Link to="/category/B">Categoría B</Link>
         <li>Categoría A</li>
         <li>Categoría C</li>
       </ul>

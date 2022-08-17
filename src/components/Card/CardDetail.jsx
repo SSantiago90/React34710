@@ -1,17 +1,19 @@
-import Button from "../Button/Button";
 import "./card.css";
-import { Link } from "react-router-dom";
 import ItemCount from "../ItemCount/ItemCount";
 
+import { useContext } from "react";
+import { cartContext } from "../../store/cartContext";
+
 function CardDetail({ id, title, price, img, category, stock }) {
-  /* Guardemos en un estado la cantidad que vino del ItemCount */
-  const estado = 1;
+  const { addToCart } = useContext(cartContext);
+  /* remplazar "quantityInCart" por un estado para hacer dinamico el renderizado condicional del itemcount */
+  const quantityInCart = 0;
 
   function handleAdd(count) {
-    console.log("Agregar al carrito", count);
-    /* setState */
+    const itemToCart = { id, title, price, img, category, stock };
+    addToCart(itemToCart, count);
+    /* setQuantity(count) */
   }
-
 
   return (
     <div className="card">
@@ -24,16 +26,16 @@ function CardDetail({ id, title, price, img, category, stock }) {
         <h3>$ {price}</h3>
       </div>
 
-      { estado === 0?  
+      {quantityInCart === 0 ? (
         <ItemCount
           initial={1}
           stock={stock}
           onAdd={handleAdd}
           text={"Finalizar"}
         />
-        : 
+      ) : (
         <a href="/cart">Ir al carrito</a>
-      }
+      )}
     </div>
   );
 }

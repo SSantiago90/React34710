@@ -7,18 +7,16 @@ function UserForm() {
     email: "",
     telefono: "",
   });
-
   function handleSubmit(evt) {
     evt.preventDefault();
     console.log(userData);
-    
+
     setUserData({
       name: "",
       email: "",
       telefono: "",
     });
   }
-
   function inputChangeHandler(evt) {
     const input = evt.target;
 

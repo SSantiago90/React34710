@@ -20,9 +20,7 @@ function Card({ id, title, price, img, category, stock }) {
             /* onTouch={() => alert(`Clickeado el item: ${title}`)} */
             text="Ver más"
           ></Button>
-        </Link>
-
-        <ItemCount initial={1} stock={stock} text="Agregar al carrito"/>
+        </Link>       
         
       </div>
     </div>

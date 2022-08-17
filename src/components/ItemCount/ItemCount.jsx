@@ -17,7 +17,7 @@ function ItemCount(props) {
       <button onClick={handleDecrement}>restar</button>
       <span>{count}</span>
       <button onClick={handleIncrement}>sumar</button>
-      <button onClick={() => props.onAdd(count)}>{props.text}</button>
+      <button onClick={()=>props.onAdd(count)}>Finalizar Compra</button>
     </>
   );
 }
