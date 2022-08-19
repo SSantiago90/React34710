@@ -11,7 +11,7 @@ export function CartProvider({ children }) {
   const [cart, setCart] = useState([]);
 
   function addToCart(item, count) {
-    if (isInCart(item.id)) {
+    if (cart.some(itemInCart => itemInCart.id === item.id)) {
         /* el item ya existe */
     }
     else{
@@ -20,10 +20,6 @@ export function CartProvider({ children }) {
       setCart(copyCart)
     }
    
-  }
-
-  function isInCart(id){
-    return ( cart.some(itemInCart => itemInCart.id === id))
   }
 
   return (

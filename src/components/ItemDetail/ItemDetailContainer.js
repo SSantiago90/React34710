@@ -4,7 +4,7 @@ import CardDetail from "../Card/CardDetail";
 import { useParams } from "react-router-dom";
 
 function ItemDetailContainer({ itemid }) {
-  const [item, setItem] = useState({});
+  const [item, setItem] = useState();
 
   const { id } = useParams();
 
@@ -29,7 +29,8 @@ function ItemDetailContainer({ itemid }) {
 
   return (
     <div className="main">
-      <CardDetail
+      { item
+        ?  <CardDetail
         id={item.id}
         title={item.title}
         price={item.price}
@@ -37,6 +38,9 @@ function ItemDetailContainer({ itemid }) {
         category={item.category}
         stock={item.stock}
       />
+        :  <h1>Cargando</h1>
+     
+    }
     </div>
   );
 }

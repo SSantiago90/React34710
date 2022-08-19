@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from "react";
 import data from "../../data/data";
 import Card from "../Card/Card";
+import { Metronome } from "@uiball/loaders";
 
 function traerProductos() {
   return new Promise((resolve, reject) => {
@@ -23,12 +24,20 @@ const ItemListContainer = () => {
 
   //console.log(products);
 
+  if (products.length === 0) {
+    return (
+      <div className="main container mx-auto mt-5">
+        <Metronome size={90} speed={1.6} color="lightblue" />
+      </div>
+    );
+  }
+
   return (
     <div className="main container mx-auto mt-5">
-      {/* El mapa debería realizarse en el componente <ItemList>, al que le pasamos el estado "products" mediante props */}
       {products.map((item) => {
         return (
           <Card
+            key={item.id}
             id={item.id}
             title={item.title}
             price={item.price}

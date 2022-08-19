@@ -11,7 +11,9 @@ function NavBar() {
         </Link>
         <Link to="/category/B">Categoría B</Link>
         <li>Categoría A</li>
-        <li>Categoría C</li>
+        <li>
+          <Link to="/cart">Cart</Link>
+        </li>
       </ul>
     </div>
   );
