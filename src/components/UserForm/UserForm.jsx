@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import "./userform.css";
 import Button from "../Button/Button";
 
-import { collection, addDoc } from "firebase/firestore";
+import { collection, addDoc, query, where } from "firebase/firestore";
 import firestoreDB from "../../services/firebase";
 
 function UserForm({ cart }) {
@@ -27,7 +27,8 @@ function UserForm({ cart }) {
 
     const collectionRef = collection(firestoreDB, "orders");
     const order = await addDoc(collectionRef, orderData);
-    console.log(order);
+    console.log("Orden creada:", order.id);
+    /* const q = query(productosRef, where(documentId(), 'in', cart.map(el => el.id))) */
   }
 
   function inputChangeHandler(evt) {

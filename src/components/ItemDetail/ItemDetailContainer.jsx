@@ -4,26 +4,26 @@ import CardDetail from "../Card/CardDetail";
 import { useParams } from "react-router-dom";
 import { Metronome } from "@uiball/loaders";
 
+import firestoreDB from "../../services/firebase";
+import { collection, doc, getDoc } from "firebase/firestore";
+
 function ItemDetailContainer({ itemid }) {
   const [item, setItem] = useState();
-
   const { id } = useParams();
 
-  function traerProducto() {
+  function getToDoById(id) {
     return new Promise((resolve, reject) => {
-      setTimeout(() => {
-        let itemRequested = dataJSON.find(
-          (elemento) => elemento.id === Number(id)
-        );
+      const todosCollectionRef = collection(firestoreDB, "movies");
+      const docRef = doc(todosCollectionRef, id);
 
-        if (itemRequested === undefined) reject("No encontramos el item");
-        else resolve(itemRequested);
-      }, 1000);
+      getDoc(docRef).then((snapshot) => {
+        resolve({ ...snapshot.data(), id: snapshot.id });
+      });
     });
   }
 
   useEffect(() => {
-    traerProducto()
+    getToDoById(id)
       .then((respuesta) => setItem(respuesta))
       .catch((error) => alert(error));
   }, []);
