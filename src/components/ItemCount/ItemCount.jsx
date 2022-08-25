@@ -15,7 +15,9 @@ function ItemCount(props) {
   return (
     <>
       <h3>Item Counter</h3>
-      <Button type="alert" onClick={handleDecrement}>-</Button>
+      <Button type="alert" onTouch={handleDecrement}>
+        -
+      </Button>
       <strong>{count}</strong>
       <Button onTouch={handleIncrement}>+</Button>
       <br />

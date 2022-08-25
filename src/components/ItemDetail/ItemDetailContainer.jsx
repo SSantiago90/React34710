@@ -2,6 +2,7 @@ import React, { useEffect, useState } from "react";
 import dataJSON from "../../data/data";
 import CardDetail from "../Card/CardDetail";
 import { useParams } from "react-router-dom";
+import { Metronome } from "@uiball/loaders";
 
 function ItemDetailContainer({ itemid }) {
   const [item, setItem] = useState();
@@ -39,7 +40,7 @@ function ItemDetailContainer({ itemid }) {
           stock={item.stock}
         />
       ) : (
-        <h1>Cargando</h1>
+        <Metronome size={90} speed={1.6} color="lightblue" />
       )}
     </div>
   );

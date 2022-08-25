@@ -10,7 +10,7 @@ function NavBar() {
           <li>Inicio</li>
         </Link>
         <Link to="/category/B">Categoría B</Link>
-        <li>Categoría A</li>
+        <Link to="/category/B">Categoría C</Link>
         <li>
           <Link to="/cart">Cart</Link>
         </li>
