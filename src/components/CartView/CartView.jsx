@@ -1,6 +1,6 @@
 import { useContext } from "react";
 import { cartContext } from "../../store/cartContext";
-import Button from "../Button/Button";
+import UserForm from "../UserForm/UserForm";
 import CartItem from "./CartItem";
 import "./cartview.css";
 
@@ -39,10 +39,8 @@ function CartView() {
           </tbody>
         </table>
       </div>
-      <div>
-        <Button onTouch={() => {}}>Finalizar Compra</Button>
-        <Button type="alert">Vaciar Carrito</Button>
-      </div>
+      <div></div>
+      <UserForm cart={cart} />
     </>
   );
 }

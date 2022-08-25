@@ -8,10 +8,13 @@ import UserForm from "./components/UserForm/UserForm";
 import { CartProvider } from "./store/cartContext";
 import CartView from "./components/CartView/CartView";
 
+import { arrayToFirebase } from "./services/firebase";
+
 function App() {
   return (
     <div className="App">
       <BrowserRouter>
+        {/*   <button onClick={() => arrayToFirebase()}>Enviar datos</button> */}
         <CartProvider>
           <NavBar />
           <Routes>

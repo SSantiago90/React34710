@@ -36,7 +36,7 @@ function ItemDetailContainer({ itemid }) {
           title={item.title}
           price={item.price}
           img={item.img}
-          category={item.category}
+          category={item.genre}
           stock={item.stock}
         />
       ) : (

@@ -1,22 +1,35 @@
 import React, { useState } from "react";
 import "./userform.css";
+import Button from "../Button/Button";
 
-function UserForm() {
+import { collection, addDoc } from "firebase/firestore";
+import firestoreDB from "../../services/firebase";
+
+function UserForm({ cart }) {
   const [userData, setUserData] = useState({
     name: "",
     email: "",
     telefono: "",
   });
-  function handleSubmit(evt) {
+
+  let totalPrice = 0;
+  cart.forEach((item) => (totalPrice = item.quantity * item.price));
+
+  const orderData = {
+    buyer: { ...userData },
+    items: [...cart],
+    total: totalPrice,
+  };
+
+  async function handleSubmit(evt) {
     evt.preventDefault();
     console.log(userData);
 
-    setUserData({
-      name: "",
-      email: "",
-      telefono: "",
-    });
+    const collectionRef = collection(firestoreDB, "orders");
+    const order = await addDoc(collectionRef, orderData);
+    console.log(order);
   }
+
   function inputChangeHandler(evt) {
     const input = evt.target;
 
@@ -74,8 +87,10 @@ function UserForm() {
         </div>
 
         <div>
-          <button type="submit">Enviar</button>
-          <button type="reset">Cancelar</button>
+          <Button type="submit" onTouch={() => {}}>
+            Finalizar Compra
+          </Button>
+          <Button type="reset">Vaciar Carrito</Button>
         </div>
       </form>
     </div>

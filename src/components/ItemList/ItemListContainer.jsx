@@ -41,7 +41,7 @@ const ItemListContainer = () => {
             id={item.id}
             title={item.title}
             price={item.price}
-            category={item.category}
+            category={item.genre}
             img={item.img}
             stock={item.stock}
           />
