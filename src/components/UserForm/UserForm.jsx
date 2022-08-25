@@ -2,7 +2,16 @@ import React, { useState } from "react";
 import "./userform.css";
 import Button from "../Button/Button";
 
-import { collection, addDoc, query, where } from "firebase/firestore";
+import {
+  getDocs,
+  collection,
+  addDoc,
+  query,
+  where,
+  documentId,
+  updateDoc,
+  writeBatch,
+} from "firebase/firestore";
 import firestoreDB from "../../services/firebase";
 
 function UserForm({ cart }) {
@@ -28,6 +37,28 @@ function UserForm({ cart }) {
     const collectionRef = collection(firestoreDB, "orders");
     const order = await addDoc(collectionRef, orderData);
     console.log("Orden creada:", order.id);
+
+    const collectionMoviesRef = collection(firestoreDB, "movies");
+
+    const arrayIds = cart.map((item) => item.id);
+    const q = query(collectionMoviesRef, where(documentId(), "in", arrayIds));
+
+    let batch = writeBatch(firestoreDB);
+
+    getDocs(q).then((response) => {
+      response.docs.forEach((doc) => {
+        const itemToUpdate = cart.find((prod) => prod.id === doc.id);
+
+        if (doc.data().stock >= itemToUpdate.quantity) {
+          batch.update(doc.ref, {
+            stock: doc.data().stock - itemToUpdate.quantity,
+          });
+        }
+        batch.commit();
+        console.log("commit")
+      });
+    });
+    
   }
 
   function inputChangeHandler(evt) {
