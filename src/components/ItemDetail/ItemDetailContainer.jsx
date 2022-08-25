@@ -29,18 +29,18 @@ function ItemDetailContainer({ itemid }) {
 
   return (
     <div className="main">
-      { item
-        ?  <CardDetail
-        id={item.id}
-        title={item.title}
-        price={item.price}
-        img={item.img}
-        category={item.category}
-        stock={item.stock}
-      />
-        :  <h1>Cargando</h1>
-     
-    }
+      {item ? (
+        <CardDetail
+          id={item.id}
+          title={item.title}
+          price={item.price}
+          img={item.img}
+          category={item.category}
+          stock={item.stock}
+        />
+      ) : (
+        <h1>Cargando</h1>
+      )}
     </div>
   );
 }
