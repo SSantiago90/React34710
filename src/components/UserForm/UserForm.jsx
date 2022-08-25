@@ -28,7 +28,6 @@ function UserForm({ cart }) {
     const collectionRef = collection(firestoreDB, "orders");
     const order = await addDoc(collectionRef, orderData);
     console.log("Orden creada:", order.id);
-    /* const q = query(productosRef, where(documentId(), 'in', cart.map(el => el.id))) */
   }
 
   function inputChangeHandler(evt) {
