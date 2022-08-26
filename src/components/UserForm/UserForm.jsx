@@ -1,18 +1,10 @@
 import React, { useState } from "react";
 import "./userform.css";
 import Button from "../Button/Button";
+import { getDocs, collection, addDoc, query, where, writeBatch, documentId } from "firebase/firestore";
 
-import {
-  getDocs,
-  collection,
-  addDoc,
-  query,
-  where,
-  documentId,
-  updateDoc,
-  writeBatch,
-} from "firebase/firestore";
 import firestoreDB from "../../services/firebase";
+import { useNavigate } from 'react-router-dom'
 
 function UserForm({ cart }) {
   const [userData, setUserData] = useState({
@@ -21,30 +13,41 @@ function UserForm({ cart }) {
     telefono: "",
   });
 
-  let totalPrice = 0;
-  cart.forEach((item) => (totalPrice = item.quantity * item.price));
+  let navigate = useNavigate();
+  const [orderFirebase, setOrderFirebase] = useState({
+    id: '',
+    complete: false,
+  });
 
-  const orderData = {
+  /* { buyer: { name, phone, email }, items: [{id, title, price}], total  } */
+
+  let total = 0;
+  cart.forEach((item) => {
+    total += item.price * item.quantity;
+  });
+  /* Array.reduce */
+
+  const ordenDeCompra = {
     buyer: { ...userData },
     items: [...cart],
-    total: totalPrice,
+    total: total,
+    date: new Date(),
   };
 
   async function handleSubmit(evt) {
-    evt.preventDefault();
-    console.log(userData);
+    evt.preventDefault();    
 
     const collectionRef = collection(firestoreDB, "orders");
-    const order = await addDoc(collectionRef, orderData);
-    console.log("Orden creada:", order.id);
+    const order = await addDoc(collectionRef, ordenDeCompra);    
+    setOrderFirebase({id: order.id, complete: true});
+  
 
+    /* Control de Stock . . .  */
+   /*  
     const collectionMoviesRef = collection(firestoreDB, "movies");
-
     const arrayIds = cart.map((item) => item.id);
     const q = query(collectionMoviesRef, where(documentId(), "in", arrayIds));
-
     let batch = writeBatch(firestoreDB);
-
     getDocs(q).then((response) => {
       response.docs.forEach((doc) => {
         const itemToUpdate = cart.find((prod) => prod.id === doc.id);
@@ -57,8 +60,7 @@ function UserForm({ cart }) {
         batch.commit();
         console.log("commit")
       });
-    });
-    
+    });     */
   }
 
   function inputChangeHandler(evt) {
@@ -81,6 +83,15 @@ function UserForm({ cart }) {
     });
   }
 
+  if (orderFirebase.complete === true) {
+    return (
+      <div>
+        <h1>Gracias por tu compra!</h1>
+        <p>El id de seguimiento de tu compra es: {orderFirebase.id}</p>
+      </div>
+    );
+  }
+
   return (
     <div className="form-container">
       <form onReset={handleReset} onSubmit={handleSubmit}>
@@ -92,6 +103,7 @@ function UserForm({ cart }) {
             name="name"
             type="text"
             placeholder="Nombre"
+            required
           />
         </div>
 
@@ -103,6 +115,7 @@ function UserForm({ cart }) {
             name="telefono"
             type="text"
             placeholder="Telefono"
+            required
           />
         </div>
 
@@ -114,11 +127,12 @@ function UserForm({ cart }) {
             name="email"
             type="text"
             placeholder="Correo"
+            required
           />
         </div>
 
         <div>
-          <Button type="submit" onTouch={() => {}}>
+          <Button type="submit" onTouch={handleSubmit}>
             Finalizar Compra
           </Button>
           <Button type="reset">Vaciar Carrito</Button>

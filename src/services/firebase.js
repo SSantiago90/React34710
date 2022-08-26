@@ -16,12 +16,12 @@ const firebaseConfig = {
 const app = initializeApp(firebaseConfig);
 const firestoreDB = getFirestore(app);
 
-export async function arrayToFirebase() {
-  const collectionRef = collection(firestoreDB, "movies");
+export async function saveProductsToFirebase() {
+  const collectionMovies = collection(firestoreDB, "movies");
 
-  for (const item of itemsdata) {
-    let newDoc = await addDoc(collectionRef, item);
-    console.log("Documento guardado:", newDoc.id);
+  for (let item of itemsdata) {
+    const docref = await addDoc(collectionMovies, item);
+    console.log("documento creado con id:", docref.id);
   }
 }
 

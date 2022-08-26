@@ -1,4 +1,4 @@
-const itemsData = [
+/* const itemsData = [
   {
     id: 1,
     img: "http://1.bp.blogspot.com/-qxM5EzxDDBU/UVA4Xc6uuCI/AAAAAAAAhzw/4WUUzyrWc1Q/s1600/wolverine-poster1.jpg",
@@ -83,3 +83,4 @@ const itemsData = [
 ];
 
 export default itemsData;
+ */
